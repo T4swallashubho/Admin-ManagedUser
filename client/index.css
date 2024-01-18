@@ -1,0 +1,50 @@
+:root {
+  --color-grey: #646464;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  color: var(--color-grey);
+}
+
+.admin {
+  font-size: 35px;
+}
+
+.circle_logo {
+  position: relative;
+  background-color: #03013b;
+  margin-right: 40px;
+}
+
+.Logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 992px) {
+  body {
+    background: #f4f4f4;
+  }
+
+  .circle_logo {
+    margin-bottom: 100px;
+  }
+
+  .Logo {
+    margin-bottom: 90px;
+  }
+}

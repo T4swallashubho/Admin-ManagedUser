@@ -2,8 +2,9 @@
 
 const mongoose = require("mongoose");
 
-const str =
-  "mongodb+srv://cloud9shubho:VJ7rZAA7UOtlKNQ2@clusterportfolio.gozuo.mongodb.net/?retryWrites=true";
+require('dotenv').config({ debug: true })
+
+const str = `mongodb+srv://cloud9shubho:${process.env.MONGO_CONNECT}@clusterportfolio.gozuo.mongodb.net/?retryWrites=true`;
 
 main()
   .then(() => {
