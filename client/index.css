@@ -26,6 +26,7 @@ body {
   position: relative;
   background-color: #03013b;
   margin-right: 40px;
+  min-height: 100vh;
 }
 
 .Logo {
