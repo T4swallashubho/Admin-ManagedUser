@@ -20,3 +20,7 @@ app.post("/admin", (req, res) => {
 });
 
 app.listen(PORT, console.log("Server is listening"));
+
+
+// Export the Express API
+module.exports = app;
