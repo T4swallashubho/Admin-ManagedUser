@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const dotenv = require("dotenv");
 
-const PORT = 8080;
+dotenv.config()
+
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 
@@ -20,7 +23,6 @@ app.post("/admin", (req, res) => {
 });
 
 app.listen(PORT, console.log("Server is listening"));
-
 
 // Export the Express API
 module.exports = app;
