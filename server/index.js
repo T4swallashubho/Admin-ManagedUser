@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const dotenv = require("dotenv");
+const path = require("path");
 
 dotenv.config();
 
@@ -11,10 +12,15 @@ app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
+// for serving static files
+app.use(express.static("public"));
+
+app.use(path.join(__dirname, "public"));
+
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("hello world");
+  res.sendFile("index.html");
 });
 
 app.get("/user", (req, res) => {
@@ -27,3 +33,5 @@ app.post("/admin", (req, res) => {
 });
 
 app.listen(PORT, console.log("Server is listening"));
+
+module.exports = app
