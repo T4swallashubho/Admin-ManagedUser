@@ -13,12 +13,12 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // for serving static files
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: path.join(__dirname, "public") });
+  res.sendFile("index.html");
 });
 
 app.get("/user", (req, res) => {
