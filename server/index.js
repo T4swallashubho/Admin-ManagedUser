@@ -15,12 +15,10 @@ app.use(express.urlencoded({ extended: true }));
 // for serving static files
 app.use(express.static("public"));
 
-app.use(path.join(__dirname, "public"));
-
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html");
+  res.sendFile("index.html", { root: path.join(__dirname, "public") });
 });
 
 app.get("/user", (req, res) => {
