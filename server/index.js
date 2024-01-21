@@ -15,24 +15,31 @@ app.use(cors());
 
 app.use(express.urlencoded({ extended: true }));
 
+app.set("view engine", "ejs");
+
+app.set("views", path.join(__dirname, "views"));
+
 // for serving static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Set HTML engine**
+app.engine("html", require("ejs").renderFile);
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.sendFile("index.html", { root: path.join(__dirname, "public") });
+  res.render("index.html");
 });
 
 app.get("/accessAdmin", (req, res) => {
-  res.sendFile("User.html", { root: path.join(__dirname, "public") });
+  res.render("User.html");
 });
 
 app.post("/admin", async (req, res) => {
   const user = await Admin.findOne({ username: req.body.username });
 
   if (user) {
-    const password = await bcrypt.compare(user.password, req.body.password);
+    const password = await bcrypt.compare(req.body.password, user.password);
     password ? res.redirect("/accessAdmin") : res.redirect("/");
   } else {
     res.send(403, "Authentication Failed");
@@ -40,3 +47,8 @@ app.post("/admin", async (req, res) => {
 });
 
 app.listen(PORT, console.log("Server is listening"));
+
+app.use((err, req, res, next) => {
+  console.log(err);
+  next(err);
+});
